@@ -35,3 +35,29 @@
     @endforeach
   </tbody>
 </table>
+
+<div class="row">
+  <div class="col-md-12">
+    {{$members->links()}}
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    paginate_click();
+  });
+
+  function paginate_click()
+  {
+    $(document).on('click', 'a' ,function(e)
+    {
+      var is_pagination = $(this).parent('li').parent('ul').hasClass('pagination');
+      if (is_pagination == true) 
+      {
+        e.preventDefault();
+        var _url = $(e.currentTarget).attr('href');
+        $('.table-members').load(_url);
+      }
+    });
+  }
+</script>

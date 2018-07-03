@@ -17,7 +17,7 @@ class MemberController extends ParentController
 
 	function member_load_table()
 	{
-		$data['members'] = Tbl_member::get();
+		$data['members'] = Tbl_member::paginate(2);
 		return view('member.member_load_table', $data);
 	}
 
