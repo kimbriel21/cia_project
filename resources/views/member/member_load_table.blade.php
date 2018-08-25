@@ -7,7 +7,6 @@
       <th scope="col">Last</th>
       <th scope="col">Birthday</th>
       <th scope="col">Number</th>
-      <th scope="col">Address</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -20,7 +19,6 @@
       <td>{{$member->last_name}}</td>
       <td>{{$member->birthday}}</td>
       <td>{{$member->number}}</td>
-      <td>{{$member->address}}</td>
       <td class="text-center">
         <div class="w3-dropdown-hover">
           <button class="w3-button w3-blue">Action</button>
@@ -30,7 +28,6 @@
           </div>
         </div>
       </td>
-      
     </tr>
     @endforeach
   </tbody>

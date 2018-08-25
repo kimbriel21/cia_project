@@ -48,10 +48,30 @@
       <textarea class="form-control" aria-label="Address" name="address" required>{{$member->address}}</textarea>
     </div>
   </div>
+
+  <div class="row" style="margin-top: 10px;">
+    <div class="col-md-12">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Ministry</span>
+      </div>
+      <select class="js-example-basic-multiple" name="ministries[]" multiple="multiple" style="width: 100%">
+        @foreach($ministries as $key => $ministry)
+        <option value="{{$ministry->ministry_id}}" {{in_array($ministry->ministry_id, $member_ministry) ? 'selected' : ''}}> {{$ministry->ministry_name}} </option>
+        @endforeach
+      </select>
+    </div>
+  </div>
+
 </div>
 <div class="modal-footer">
   <button type="submit" class="btn btn-primary">Update</button>
   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 </div>
 </form>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+     $('.js-example-basic-multiple').select2();
+  });
+</script>
 

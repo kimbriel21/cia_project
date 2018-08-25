@@ -43,9 +43,10 @@ class LoginController extends Controller
             /* AUTHENTICATE LOGIN */
             $username_email                 = $request->username;
             $check_member                   = Tbl_User::where("email", $username_email)->orWhere("username", $username_email)->first();
-            $member_password                = Crypt::decryptString($check_member->password);
+           
             if($check_member)
             {
+                $member_password = Crypt::decryptString($check_member->password);
                 if ($request->password == $member_password)
                 { 
                     Authenticator::login($check_member->id, $member_password);

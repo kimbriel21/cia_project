@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Member;
 use App\Http\Controllers\Member\ParentController;
 use Illuminate\Http\Request;
 use App\Models\Tbl_member;
+use App\Models\Tbl_ministry;
+use App\Models\Tbl_member_ministry;
 use Redirect;
 
 class MemberController extends ParentController
@@ -17,18 +19,18 @@ class MemberController extends ParentController
 
 	function member_load_table()
 	{
-		$data['members'] = Tbl_member::paginate(2);
+		$data['members'] = Tbl_member::paginate(15);
 		return view('member.member_load_table', $data);
 	}
 
 	function add_member_modal()
 	{
-		return view('modals.add_member_modal');
+		$data['ministries'] = Tbl_ministry::get();
+		return view('modals.add_member_modal', $data);
 	}
 
 	function member_add(Request $request)
 	{
-		
 		$insert['first_name'] 	= $request->first_name;
 		$insert['middle_name'] 	= $request->middle_name;
 		$insert['last_name'] 	= $request->last_name;
@@ -36,7 +38,14 @@ class MemberController extends ParentController
 		$insert['number'] 		= $request->contact_number;
 		$insert['address'] 		= $request->address;
 
-		Tbl_member::insert($insert);
+		$member_id 				= Tbl_member::insertGetId($insert);
+
+		foreach ($request->ministries as $key => $ministry) 
+		{
+			$insert_ministry['member_id'] = $member_id;
+			$insert_ministry['ministry_id'] = $ministry;
+			Tbl_member_ministry::insert($insert_ministry);
+		}
 
 		$return['call_function'] = "member_load_table";
 		$return['status']		 = "success";
@@ -48,9 +57,11 @@ class MemberController extends ParentController
 	function view_member_modal($member_id)
 	{
 
-		$data['member'] = Tbl_member::where('member_id', $member_id)->first();
+		$data['member'] 			= Tbl_member::where('member_id', $member_id)->first();
+		$data['ministries'] 		= Tbl_ministry::get();
+		$data['member_ministry']	= collect(Tbl_member_ministry::where('member_id', $member_id)->pluck('ministry_id'))->toArray();
 		
-		return view('modals.view_member_modal',$data);
+		return view('modals.view_member_modal', $data);
 	}
 
 	function member_delete(Request $request)
@@ -67,7 +78,8 @@ class MemberController extends ParentController
 
 	function update_member(Request $request)
 	{
-		$member_id = $request->member_id;
+		$member_id  = $request->member_id;
+		$ministries = $request->ministries;
 
 		$update['first_name'] 	= $request->first_name;
 		$update['middle_name'] 	= $request->middle_name;
@@ -78,6 +90,15 @@ class MemberController extends ParentController
 
 		Tbl_member::where('member_id', $member_id)->update($update);
 		$update['member_id']	 = $member_id;
+
+		Tbl_member_ministry::where('member_id', $member_id)->delete();
+
+		foreach ($ministries as $key => $ministry) 
+		{
+			$insert_ministry['member_id'] = $member_id;
+			$insert_ministry['ministry_id'] = $ministry;
+			Tbl_member_ministry::insert($insert_ministry);
+		}
 
 		$return['status']		 = "success";
 		$return['call_function'] = "update_member_row";

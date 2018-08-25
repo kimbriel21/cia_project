@@ -28,6 +28,8 @@
    
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
+    <link href="/res/select2/css/select2.min.css" rel="stylesheet" />
+    
     
     @yield('css')
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -92,13 +94,16 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard </a>
                         </li>
                         <li>
-                            <a href="/members"><i class="fa fa-group fa-fw"></i> Members</a>
+                            <a href="/members"><i class="fa fa-group fa-fw"></i> Members </a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Login Logs</a>
+                            <a href="/ministries"><i class="fa fa-home fa-fw"></i> Ministries </a>
+                        </li>
+                        <li>
+                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Login Logs </a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
@@ -209,6 +214,7 @@
     <!-- Custom Theme JavaScript -->
     <script src="/res/dist/js/sb-admin-2.js"></script>
     <script src="/res/global.js" type="text/javascript"></script>
+    <script src="/res/select2/js/select2.min.js"></script>
     @yield('script')
 </body>
 

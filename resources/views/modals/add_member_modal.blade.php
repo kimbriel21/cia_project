@@ -1,3 +1,6 @@
+<link href="/res/select2/css/select2.min.css" rel="stylesheet" />
+<script src="/res/select2/js/select2.min.js"></script>
+
 <form action="/member_add" method="post" class="global-submit">
 <input type="hidden" name="_token" value="{{csrf_token()}}">
 <div class="modal-header">
@@ -47,9 +50,30 @@
       <textarea class="form-control" aria-label="Address" name="address" required></textarea>
     </div>
   </div>
+
+  <div class="row" style="margin-top: 10px;">
+    <div class="col-md-12">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Ministry</span>
+      </div>
+      <select class="js-example-basic-multiple" name="ministries[]" multiple="multiple" style="width: 100%">
+        @foreach($ministries as $key => $ministry)
+        <option value="{{$ministry->ministry_id}}">{{$ministry->ministry_name}}</option>
+        @endforeach
+      </select>
+    </div>
+  </div>
+ 
+  
 </div>
 <div class="modal-footer">
   <button type="submit" class="btn btn-primary">Add Member</button>
   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 </div>
 </form>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+  });
+</script>

@@ -57,7 +57,7 @@ class RegisterController extends Controller
 
         	// return redirect("/signin")->with("error", "You have successfully registered to ALL BY ALL.");
             session("successful", "You have successfully registered to ALL BY ALL.");
-        	return redirect("/login")->with("successful", "You have successfully registered to ALL BY ALL.");
+        	return redirect("/login")->with("successful", "You have successfully registered.");
         }
     }
     public function success()

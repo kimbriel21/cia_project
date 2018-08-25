@@ -23,7 +23,6 @@ class CreateTableLogin extends Migration
             $table->string('login_platform')->comment("E.G: WinXP, iOS, Win10, Android5.0");
             $table->string('login_ip')->comment("E.G 11.11.11.11"); //can be used for strict IP Mode
             $table->dateTime('login_date');
-            $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -35,6 +34,6 @@ class CreateTableLogin extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('tbl_login');
     }
 }

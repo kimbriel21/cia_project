@@ -6,6 +6,7 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
+
 <div class="row mb-2">
 	<div class="d-flex justify-content-center">
 		<button type="button" class="btn btn-primary global-modal" url="/add_member_modal"><p class="fa fa-user"> Add Member </p></button>
@@ -88,7 +89,7 @@
 
 	function update_row_html(data)
 	{
-	  var _html = '<th scope="row">'+data.member_id+'</th><td>'+data.first_name+'</td><td>'+data.middle_name+'</td><td>'+data.last_name+'</td><td>'+data.birthday+'</td><td>'+data.number+'</td><td>'+data.address+'</td><td class="text-center"><div class="w3-dropdown-hover"><button class="w3-button w3-blue">Action</button><div class="w3-dropdown-content w3-bar-block w3-border"><button class="w3-bar-item w3-button dropdown-item view-member global-modal" url="/view_member_modal/'+data.member_id+'">View</button><button class="w3-bar-item w3-button delete-member" >Delete</button></div></div></td>'
+	  var _html = '<th scope="row">'+data.member_id+'</th><td>'+data.first_name+'</td><td>'+data.middle_name+'</td><td>'+data.last_name+'</td><td>'+data.birthday+'</td><td>'+data.number+'</td><td class="text-center"><div class="w3-dropdown-hover"><button class="w3-button w3-blue">Action</button><div class="w3-dropdown-content w3-bar-block w3-border"><button class="w3-bar-item w3-button dropdown-item view-member global-modal" url="/view_member_modal/'+data.member_id+'">View</button><button class="w3-bar-item w3-button delete-member" >Delete</button></div></div></td>'
 	  $('.member-id-'+data.member_id).html(_html);
 	}
 

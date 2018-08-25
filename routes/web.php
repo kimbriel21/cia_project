@@ -17,6 +17,10 @@ Route::get('/', function () {
 Route::get('/a', function () {
     return view('member.layout_member');
 });
+
+Route::get('/testing', function () {
+    return view('testing.testing');
+});
 Route::get('/login', 'LoginController@index');
 Route::post('/login', 'LoginController@submit_login');
 Route::get('/register', 'RegisterController@index');
@@ -35,4 +39,18 @@ Route::post('/member_add', 'Member\MemberController@member_add');
 Route::post('/view_member_modal/{member_id}' , 'Member\MemberController@view_member_modal');
 Route::post('/update_member' , 'Member\MemberController@update_member');
 Route::post('/member_delete' , 'Member\MemberController@member_delete');
+
+//ministries
+Route::any('/ministries', 'Ministry\MinistryController@index');
+Route::any('/ministy_load_table', 'Ministry\MinistryController@ministy_load_table');
+Route::any('/add_ministry_modal', 'Ministry\MinistryController@add_ministry_modal');
+Route::any('/ministry_add', 'Ministry\MinistryController@ministry_add');
+Route::any('/view_ministry_member/{ministry_id}', 'Ministry\MinistryController@view_ministry_member');
+Route::post('/ministry_update','Ministry\MinistryController@ministry_update');
+Route::post('/ministry_delete','Ministry\MinistryController@ministry_delete');
+Route::post('/remove_ministry_member','Ministry\MinistryController@remove_ministry_member');
+
+
+
+
 
